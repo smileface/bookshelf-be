@@ -8,7 +8,26 @@ Run the command to install all dependencies:
     composer install
 ```
 ### Docker
-To launch the application, run the command: 
+Run containers:
 ```bash
     docker-compose up
+```
+
+Run containers in the background:
+```bash
+    docker-compose up
+```
+
+Rebuild containers:
+```bash
+docker-compose down -v --remove-orphans
+docker-compose rm -vsf
+docker-compose up -d --build
+```
+
+Recreate database:
+```bash
+docker-compose exec php ./bin/console doctrine:database:drop --force
+docker-compose exec php ./bin/console doctrine:database:create
+docker-compose exec php ./bin/console doctrine:migrations:migrate -n
 ```
