@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Entity;
 
@@ -13,16 +14,16 @@ class Genre
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $id;
+    private int $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $name;
+    private string $name;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $description;
+    private string $description;
 
     #[ORM\ManyToMany(targetEntity: Book::class, mappedBy: 'genres')]
-    private $books;
+    private ArrayCollection $books;
 
     public function __construct()
     {

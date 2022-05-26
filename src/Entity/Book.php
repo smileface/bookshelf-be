@@ -1,8 +1,10 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Entity;
 
 use App\Repository\BookRepository;
+use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -13,25 +15,25 @@ class Book
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $id;
+    private int $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $title;
+    private ?string $title;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $description;
+    private ?string $description;
 
     #[ORM\Column(type: 'datetime')]
-    private $date;
+    private ?DateTimeInterface $date;
 
     #[ORM\Column(type: 'string', length: 13, nullable: true)]
-    private $isbn;
+    private ?string $isbn;
 
     #[ORM\ManyToMany(targetEntity: Author::class, mappedBy: 'books')]
-    private $authors;
+    private ArrayCollection $authors;
 
     #[ORM\ManyToMany(targetEntity: Genre::class, inversedBy: 'books')]
-    private $genres;
+    private ArrayCollection $genres;
 
     public function __construct()
     {

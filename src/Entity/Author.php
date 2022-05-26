@@ -1,9 +1,11 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Entity;
 
 use App\Repository\AuthorRepository;
 use Doctrine\Common\Collections\ArrayCollection;
+use DateTimeInterface;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -13,28 +15,28 @@ class Author
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $id;
+    private int $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $firstName;
+    private ?string $firstName;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $lastName;
+    private ?string $lastName;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $middleName;
+    private ?string $middleName;
 
     #[ORM\Column(type: 'text', nullable: true)]
-    private $biography;
+    private ?string $biography;
 
     #[ORM\Column(type: 'date', nullable: true)]
-    private $birthDate;
+    private ?DateTimeInterface $birthDate;
 
     #[ORM\Column(type: 'date', nullable: true)]
-    private $deathDate;
+    private ?DateTimeInterface $deathDate;
 
     #[ORM\ManyToMany(targetEntity: Book::class, inversedBy: 'authors')]
-    private $books;
+    private ArrayCollection $books;
 
     public function __construct()
     {

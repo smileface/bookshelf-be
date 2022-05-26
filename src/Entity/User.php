@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Entity;
 
@@ -12,13 +13,13 @@ class User
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $id;
+    private int $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $firstName;
+    private string $firstName;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $lastName;
+    private string $lastName;
 
     public function getId(): ?int
     {
